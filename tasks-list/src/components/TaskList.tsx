@@ -27,7 +27,7 @@ const TaskList = ({
             {
                 (provided, snapshot) => (
                 // <div className='important_tasks'>
-        <div className={`important_tasks ${snapshot.isDraggingOver? "dragactive": ""}`}
+        <div className={`important_tasks ${snapshot.isDraggingOver? "drag_important": ""}`}
         ref={provided.innerRef}
         {...provided.droppableProps}> 
         <span className='important_tasks_heading'> 
@@ -36,6 +36,7 @@ const TaskList = ({
         {
             importantTasks?.map((task, index) => (
                 <SingleTask 
+                key={task.id}
                 index={index}
                 task={task}
                 tasks={importantTasks}
@@ -56,7 +57,7 @@ const TaskList = ({
             {
                 (provided, snapshot) => ( 
 
-        <div className={`general_tasks ${snapshot.isDraggingOver? "dragcomplete": ""}`}
+        <div className={`general_tasks ${snapshot.isDraggingOver? "drag_general": ""}`}
          ref={provided.innerRef}
         {...provided.droppableProps}>
         {/* <div className='general_tasks'> */}
@@ -66,6 +67,7 @@ const TaskList = ({
         {
             generalTasks?.map((task, index) => (
                 <SingleTask 
+                key={task.id}
                 index={index}
                 task={task}
                 tasks={generalTasks}
@@ -81,14 +83,20 @@ const TaskList = ({
           )
          }
          </Droppable>
-
-        <div className='completed_tasks'> 
+        
+         <Droppable droppableId='CompleteList'>
+            {
+                (provided, snapshot) => ( 
+        <div className={`completed_tasks ${snapshot.isDraggingOver? "drag_complete": ""}`}
+         ref={provided.innerRef}
+        {...provided.droppableProps}> 
         <span className='completed_tasks_heading'> 
             Completed Tasks
         </span> 
         {
             completedTasks?.map((task, index) => (
-                <CompletedTask 
+                <CompletedTask
+                key={task.id} 
                 index={index}
                 task={task}
                 tasks={completedTasks}
@@ -102,6 +110,10 @@ const TaskList = ({
             )
         }
         </div>
+
+        )
+        }
+        </Droppable>
   
     </div>
 

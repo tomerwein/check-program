@@ -3,6 +3,7 @@ import Task from '../taskInfo'
 import {GrEdit, GrReturn} from 'react-icons/gr'
 import {AiTwotoneDelete} from 'react-icons/ai'
 import './styles.css'
+import { Draggable } from 'react-beautiful-dnd'
 
 type Props = {
     index: number,
@@ -50,9 +51,16 @@ const CompletedTask = ({index, task, tasks, setTasks, generalTasks, setGeneralTa
     
 
     return (
-    <form className='single_task'
-    onSubmit={(e) => approveEdit(e, task.id)}>
-        
+        <Draggable draggableId={task.id.toString()} index={index}>
+              {
+              (provided, snapshot) => (
+        <form className={`single_task ${snapshot.isDragging? "drag": ""}`} 
+    // <form className='single_task'
+    onSubmit={(e) => approveEdit(e, task.id)}
+    {...provided.draggableProps}
+        {...provided.dragHandleProps}
+        ref={provided.innerRef}>
+
         {
             isEditClicked?
             (<input 
@@ -90,9 +98,12 @@ const CompletedTask = ({index, task, tasks, setTasks, generalTasks, setGeneralTa
         </span>
 
     </div>
+    
 
     </form>
+     )}
     
+     </Draggable>
   )
 }
 export default CompletedTask

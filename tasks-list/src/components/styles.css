@@ -206,16 +206,16 @@
     box-shadow: 0 0 20px rgb(0, 0, 0);
   }
 
-  .dragactive {
-    background-color: rgb(83, 30, 135);
+  .drag_important {
+    background-color: rgb(0, 38, 255);
   }
   
-  .dragcomplete {
+  .drag_general {
     background-color: rgb(255, 38, 0);
   }
   
-  .remove {
-    background-color: rgb(235, 103, 80);
+  .drag_complete {
+    background-color: rgb(50, 200, 44);;
   }
 
   .tasks {

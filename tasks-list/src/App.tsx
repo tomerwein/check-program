@@ -57,27 +57,40 @@ const App: React.FC = () => {
     console.log(importantTasks)
     console.log(generalTasks)
    let add,
-    active = importantTasks,
-     complete = generalTasks;
+    important = importantTasks,
+     general = generalTasks,
+     complete = completedTasks;
+     
 
    if (source.droppableId === 'ImportantList'){
-     add = active[source.index];
-     active.splice(source.index, 1);
+     add = important[source.index];
+     important.splice(source.index, 1);
    }
-   else{ 
-     add = complete[source.index];
+   else if (source.droppableId === 'GeneralList'){
+     add = general[source.index];
+     general.splice(source.index, 1)
+   }
+
+   else {
+    add = complete[source.index];
      complete.splice(source.index, 1)
    }
 
    if (destination.droppableId === 'ImportantList'){
-     active.splice(destination.index, 0, add)
+    add.type = "important";
+    important.splice(destination.index, 0, add)
    }
+   else if (destination.droppableId === 'GeneralList'){
+    add.type = "general";
+    general.splice(destination.index, 0, add)
+  }
    else{ 
-     complete.splice(destination.index, 0, add)
+    complete.splice(destination.index, 0, add) 
    }
 
-   setImportantTasks(active); 
-   setGeneralTasks(complete);
+   setImportantTasks(important); 
+   setGeneralTasks(general);
+   setCompletedTasks(complete);
 
  }
 
