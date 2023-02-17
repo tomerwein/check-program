@@ -13,6 +13,7 @@ type Props = {
     setTasks: React.Dispatch<React.SetStateAction<Task[]>>,
     completedTasks: Task[],
     setCompletedTasks: React.Dispatch<React.SetStateAction<Task[]>>
+    
 }
 
 const SingleTask = ({index, task, tasks, setTasks, completedTasks, setCompletedTasks}:Props) => {
@@ -39,19 +40,28 @@ const SingleTask = ({index, task, tasks, setTasks, completedTasks, setCompletedT
     useEffect(() => {
       inputRef.current?.focus();
     }, [isEditClicked])
-    
 
+        
+  const handleDoubleClick = () => {
+    if (isEditClicked){
+        setEditClicked(!isEditClicked);
+    }
+    else{
+        setEditClicked(!isEditClicked);
+    }
+  }
+    
     return (
         <Draggable draggableId={task.id.toString()} index={index}>
               {
               (provided, snapshot) => (
         <form className={`single_task ${snapshot.isDragging? "drag": ""}`} 
-        // <form className='single_task'
         onSubmit={(e) => approveEdit(e, task.id)}
             {...provided.draggableProps}
         {...provided.dragHandleProps}
-        ref={provided.innerRef}>
-        {/* > */}
+        ref={provided.innerRef}
+        onDoubleClick={handleDoubleClick}
+        >
         
         {
             isEditClicked?

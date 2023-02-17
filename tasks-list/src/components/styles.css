@@ -3,6 +3,7 @@
     width: 95%;
     position: relative;
     align-items: center;
+    bottom: 15px;
   }
   
   .input_box {
@@ -152,7 +153,8 @@
   }
 
   .single_task_text{
-    border: black
+    
+    margin-right: 15px
   }
 
 

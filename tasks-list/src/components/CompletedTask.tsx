@@ -40,15 +40,24 @@ const CompletedTask = ({index, task, tasks, setTasks, generalTasks, setGeneralTa
         e.preventDefault();
         setTasks(tasks.map((task) => (task.id === id?
          {...task, task:editText} : task)))     
-        //  {setEditClicked(false)}
+         {setEditClicked(false)}
 
     }
+
+    const handleDoubleClick = () => {
+        if (isEditClicked){
+            setEditClicked(!isEditClicked);
+        }
+        else{
+            setEditClicked(!isEditClicked);
+        }
+      }
     
     const inputRef = useRef<HTMLInputElement>(null);
     useEffect(() => {
       inputRef.current?.focus();
     }, [isEditClicked])
-    
+
 
     return (
         <Draggable draggableId={task.id.toString()} index={index}>
@@ -58,7 +67,8 @@ const CompletedTask = ({index, task, tasks, setTasks, generalTasks, setGeneralTa
     onSubmit={(e) => approveEdit(e, task.id)}
     {...provided.draggableProps}
         {...provided.dragHandleProps}
-        ref={provided.innerRef}>
+        ref={provided.innerRef}
+        onDoubleClick={handleDoubleClick}>
 
         {
             isEditClicked?
