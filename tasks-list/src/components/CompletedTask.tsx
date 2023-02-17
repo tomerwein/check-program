@@ -55,7 +55,6 @@ const CompletedTask = ({index, task, tasks, setTasks, generalTasks, setGeneralTa
               {
               (provided, snapshot) => (
         <form className={`single_task ${snapshot.isDragging? "drag": ""}`} 
-    // <form className='single_task'
     onSubmit={(e) => approveEdit(e, task.id)}
     {...provided.draggableProps}
         {...provided.dragHandleProps}

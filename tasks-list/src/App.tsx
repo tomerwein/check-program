@@ -97,7 +97,6 @@ const App: React.FC = () => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-    {/* // <DragDropContext onDragEnd={() => {}}> */}
     <div className="App">
       <span className="heading"> Task Manager </span> 
       <Input task={task} setTask={setTask} 

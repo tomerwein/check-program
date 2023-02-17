@@ -11,7 +11,6 @@ interface Props{
     setGeneralTasks: React.Dispatch<React.SetStateAction<Task[]>>
     completedTasks : Task[],
     setCompletedTasks: React.Dispatch<React.SetStateAction<Task[]>>
-    // typeOfTask : string;
 
 }
 
@@ -26,7 +25,6 @@ const TaskList = ({
         <Droppable droppableId='ImportantList'>
             {
                 (provided, snapshot) => (
-                // <div className='important_tasks'>
         <div className={`important_tasks ${snapshot.isDraggingOver? "drag_important": ""}`}
         ref={provided.innerRef}
         {...provided.droppableProps}> 
@@ -60,7 +58,6 @@ const TaskList = ({
         <div className={`general_tasks ${snapshot.isDraggingOver? "drag_general": ""}`}
          ref={provided.innerRef}
         {...provided.droppableProps}>
-        {/* <div className='general_tasks'> */}
         <span className='general_tasks_heading'> 
             General Tasks
         </span> 
@@ -109,8 +106,8 @@ const TaskList = ({
               )
             )
         }
+        {provided.placeholder}
         </div>
-
         )
         }
         </Droppable>
